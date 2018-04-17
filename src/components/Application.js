@@ -29,10 +29,9 @@ class Application extends Component {
   // Ideally, users are going to want to add, remove,
   // and check off items, right?
 
-  onItemAdded = value => {
-    const item = { value, id: uniqueId(), packed: false };
+  onItemAdded = item => {
     this.setState(({ items }) => ({
-      items: [...items, item]
+      items: [item, ...items]
     }));
   };
   onRemove = id => {
@@ -44,7 +43,7 @@ class Application extends Component {
     this.setState(state => {
       const { items } = state;
       const itemIndex = items.findIndex(x => x.id === id);
-      if (itemIndex > 0) {
+      if (itemIndex >= 0) {
         const newItems = [...items];
         const item = newItems[itemIndex];
         newItems.splice(

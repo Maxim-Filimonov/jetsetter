@@ -50,6 +50,11 @@ class Application extends Component {
       })
     }));
   };
+  markAllAsUnpacked = () => {
+    this.setState(({ items }) => ({
+      items: items.map(x => ({ ...x, packed: false }))
+    }));
+  };
   render() {
     const { items } = this.state;
 
@@ -71,7 +76,9 @@ class Application extends Component {
           title="Packed Items"
           items={packed}
         />
-        <button className="button full-width">Mark All As Unpacked</button>
+        <button className="button full-width" onClick={this.markAllAsUnpacked}>
+          Mark All As Unpacked
+        </button>
       </div>
     );
   }

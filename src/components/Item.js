@@ -1,21 +1,21 @@
-import React, { Component } from 'react';
-import './Item.css';
+import React, { Component } from "react";
+import "./Item.css";
 
 class Item extends Component {
   render() {
-    const { item } = this.props;
+    const { item, onRemove, onCheckOff } = this.props;
     return (
       <article className="Item">
         <label htmlFor={item.id}>
           <input
             type="checkbox"
             checked={item.packed}
-            onChange={() => {}}
+            onChange={() => onCheckOff(item.id)}
             id={item.id}
           />
           {item.value}
         </label>
-        <button className="Item-remove" onClick={() => {}}>
+        <button className="Item-remove" onClick={() => onRemove(item.id)}>
           Remove
         </button>
       </article>

@@ -40,22 +40,15 @@ class Application extends Component {
     }));
   };
   onCheckOff = id => {
-    this.setState(state => {
-      const { items } = state;
-      const itemIndex = items.findIndex(x => x.id === id);
-      if (itemIndex >= 0) {
-        const newItems = [...items];
-        const item = newItems[itemIndex];
-        newItems.splice(
-          itemIndex,
-          1,
-          Object.assign({}, item, { packed: !item.packed })
-        );
-        return { items: newItems };
-      } else {
-        return state;
-      }
-    });
+    this.setState(({ items }) => ({
+      items: items.map(item => {
+        if (item.id === id) {
+          return Object.assign({}, item, { packed: !item.packed });
+        } else {
+          return item;
+        }
+      })
+    }));
   };
   render() {
     const { items } = this.state;

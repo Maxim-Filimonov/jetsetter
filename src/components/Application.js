@@ -43,7 +43,7 @@ class Application extends Component {
     this.setState(({ items }) => ({
       items: items.map(item => {
         if (item.id === id) {
-          return Object.assign({}, item, { packed: !item.packed });
+          return { ...item, packed: !item.packed };
         } else {
           return item;
         }
